@@ -255,7 +255,7 @@ a:focus-visible {
 		transform: translate(-50%, 0);
 	}
 	.oh__inner {
-		position: absolute;
+		position: fixed;
 		user-select: none;
 		bottom: 16px;
 		left: 10px;
