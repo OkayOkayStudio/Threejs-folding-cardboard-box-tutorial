@@ -88,6 +88,10 @@ window.addEventListener('resize', updateSceneSize);
 // Three.js scene
 
 function initScene() {
+    // Adjust box length for mobile devices
+    if (window.innerWidth <= 768) { // Example threshold for mobile devices
+        box.params.length /= 2.8; // Halve the length
+    }
 
     renderer = new THREE.WebGLRenderer({
         alpha: true,
@@ -98,7 +102,13 @@ function initScene() {
 
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 10, 1000);
-    camera.position.set(40, 90, 110);
+
+    // Adjust camera position for mobile devices
+    if (window.innerWidth <= 768) {
+        camera.position.set(40,60, 110); // Adjust y position for mobile
+    } else {
+        camera.position.set(40, 90, 110); // Default position for desktop
+    }
 
     rayCaster = new THREE.Raycaster();
     mouse = new THREE.Vector2(0, 0);
@@ -283,26 +293,26 @@ function createSideGeometry(baseGeometry, size, folds, hasMiddleLayer) {
 
 function createCopyright() {
     const canvas = document.createElement('canvas');
-    canvas.width = box.params.copyrightSize[0] * 10;
-    canvas.height = box.params.copyrightSize[1] * 10;
+    canvas.width = box.params.copyrightSize[0] * 25;
+    canvas.height = box.params.copyrightSize[1] * 14;
     const planeGeometry = new THREE.PlaneGeometry(box.params.copyrightSize[0], box.params.copyrightSize[1]);
 
     const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.width);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = '#000000';
-    ctx.font = '22px sans-serif';
+    ctx.font = '40px sans-serif';
     ctx.textAlign = 'end';
-    ctx.fillText('ksenia-k.com', canvas.width - 30, 30);
-    ctx.fillText('codepen.io/ksenia-k', canvas.width - 30, 70);
+    ctx.fillText('studio@okayokay.com', canvas.width - 30, 30);
+    ctx.fillText('instagram.com/okayokay', canvas.width - 30, 90);
 
     ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.moveTo(canvas.width - 160, 35);
+    ctx.moveTo(canvas.width - 300, 35);
     ctx.lineTo(canvas.width - 30, 35);
     ctx.stroke();
     ctx.beginPath();
-    ctx.moveTo(canvas.width - 228, 77);
-    ctx.lineTo(canvas.width - 30, 77);
+    ctx.moveTo(canvas.width - 208, 95);
+    ctx.lineTo(canvas.width - 30, 95);
     ctx.stroke();
 
     const texture = new THREE.CanvasTexture(canvas);
@@ -328,9 +338,9 @@ function trackLinks() {
         );
         const linkCode = checkCopyrightIntersect();
         if (linkCode === 1) {
-            window.open('https://ksenia-k.com/', '_blank').focus();
+            window.open('mailto:studio@okayokay.com', '_blank').focus();
         } else if (linkCode === 2) {
-            window.open('https://codepen.io/ksenia-k/', '_blank').focus();
+            window.open('https://instagram.com/okayokay', '_blank').focus();
         }
     });
 

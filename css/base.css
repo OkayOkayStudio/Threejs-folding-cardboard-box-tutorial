@@ -106,10 +106,21 @@ a:focus-visible {
 .unbutton:focus {
 	outline: none;
 }
-
+.display {
+	width: 100svw;
+	position: fixed;
+	top: calc(50% - 40px);
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.display svg {
+	width: 100%;
+	height: 100%;
+}
 .frame {
 	position: fixed;
-	color: var(--color-title);
+	color: #fff;
+	mix-blend-mode: difference;
 	padding: var(--padding-page);
 	display: grid;
 	grid-template-columns: auto auto auto;
@@ -151,7 +162,7 @@ a:focus-visible {
 }
 
 .frame__title-main {
-	font-size: 1rem;
+	font-size: 2rem;
 	margin: 0;
 	font-weight: normal;
 	max-width: 32ch;
@@ -175,7 +186,9 @@ a:focus-visible {
 	grid-area: prev;
 	align-self: start;
 }
-
+.lil-gui {
+	display: none !important;
+}
 .page {
 	width: 100%;
 	height: 300vh;
@@ -233,6 +246,18 @@ a:focus-visible {
 	--string-color: #8da300;
 }
 
-@media screen and (min-width: 53em) {
-	
+@media screen and (max-width: 53em) {
+	.frame__title {
+		flex-direction: column;
+	}
+	.display {
+		top: 50px;
+		transform: translate(-50%, 0);
+	}
+	.oh__inner {
+		position: fixed;
+		bottom: 16px;
+		left: 10px;
+		font-size: 1.2rem;
+	}
 }
