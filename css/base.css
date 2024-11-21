@@ -107,7 +107,7 @@ a:focus-visible {
 	outline: none;
 }
 .display {
-	width: 100svw;
+	width: calc(100vw - 32px);
 	position: fixed;
 	top: calc(50% - 40px);
 	left: 50%;

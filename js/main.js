@@ -90,7 +90,10 @@ window.addEventListener('resize', updateSceneSize);
 function initScene() {
     // Adjust box length for mobile devices
     if (window.innerWidth <= 768) { // Example threshold for mobile devices
-        box.params.length /= 2.8; // Halve the length
+        box.params.length /= 2.2; // Halve the length
+    }
+    else {
+        box.params.width /= 0.8; // Halve the width
     }
 
     renderer = new THREE.WebGLRenderer({
@@ -375,48 +378,62 @@ function createFoldingAnimation() {
             trigger: '.page',
             start: '0% 0%',
             end: '100% 100%',
-            scrub: true,
+            scrub: 0.5,
         },
         onUpdate: () => {
             updatePanelsTransform();
             checkCopyrightIntersect();
         }
     })
-        .to(box.animated, {
-            duration: 1,
-            openingAngle: .5 * Math.PI,
-            ease: 'power1.inOut'
-        })
-        .to([box.animated.flapAngles.backHalf.width, box.animated.flapAngles.frontHalf.width], {
-            duration: .6,
-            bottom: .6 * Math.PI,
-            ease: 'back.in(3)'
-        }, .9)
-        .to(box.animated.flapAngles.backHalf.length, {
-            duration: .7,
-            bottom: .5 * Math.PI,
-            ease: 'back.in(2)'
-        }, 1.1)
-        .to(box.animated.flapAngles.frontHalf.length, {
-            duration: .8,
-            bottom: .49 * Math.PI,
-            ease: 'back.in(3)'
-        }, 1.4)
-        .to([box.animated.flapAngles.backHalf.width, box.animated.flapAngles.frontHalf.width], {
-            duration: .6,
-            top: .6 * Math.PI,
-            ease: 'back.in(3)'
-        }, 1.4)
-        .to(box.animated.flapAngles.backHalf.length, {
-            duration: .7,
-            top: .5 * Math.PI,
-            ease: 'back.in(3)'
-        }, 1.7)
-        .to(box.animated.flapAngles.frontHalf.length, {
-            duration: .9,
-            top: .49 * Math.PI,
-            ease: 'back.in(4)'
-        }, 1.8)
+    .fromTo(box.animated, {
+        openingAngle: 0
+    }, {
+        duration: 0.5,
+        openingAngle: .5 * Math.PI,
+        ease: 'power1.inOut'
+    })
+    .fromTo([box.animated.flapAngles.backHalf.width, box.animated.flapAngles.frontHalf.width], {
+        bottom: 0
+    }, {
+        duration: 0.3,
+        bottom: .6 * Math.PI,
+        ease: 'back.in(3)'
+    }, 0.5)
+    .fromTo(box.animated.flapAngles.backHalf.length, {
+        bottom: 0
+    }, {
+        duration: 0.4,
+        bottom: .5 * Math.PI,
+        ease: 'back.in(2)'
+    }, 0.6)
+    .fromTo(box.animated.flapAngles.frontHalf.length, {
+        bottom: 0
+    }, {
+        duration: 0.4,
+        bottom: .49 * Math.PI,
+        ease: 'back.in(3)'
+    }, 0.8)
+    .fromTo([box.animated.flapAngles.backHalf.width, box.animated.flapAngles.frontHalf.width], {
+        top: 0
+    }, {
+        duration: 0.3,
+        top: .6 * Math.PI,
+        ease: 'back.in(3)'
+    }, 0.8)
+    .fromTo(box.animated.flapAngles.backHalf.length, {
+        top: 0
+    }, {
+        duration: 0.4,
+        top: .5 * Math.PI,
+        ease: 'back.in(3)'
+    }, 1.0)
+    .fromTo(box.animated.flapAngles.frontHalf.length, {
+        top: 0
+    }, {
+        duration: 0.5,
+        top: .49 * Math.PI,
+        ease: 'back.in(4)'
+    }, 1.1)
 }
 
 function updatePanelsTransform() {
