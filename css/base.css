@@ -255,9 +255,13 @@ a:focus-visible {
 		transform: translate(-50%, 0);
 	}
 	.oh__inner {
-		position: fixed;
+		position: absolute;
+		user-select: none;
 		bottom: 16px;
 		left: 10px;
 		font-size: 1.2rem;
+	}
+	.frame__title-main {
+		font-size: 1.5rem;
 	}
 }
