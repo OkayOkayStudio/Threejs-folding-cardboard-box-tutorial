@@ -260,6 +260,7 @@ a:focus-visible {
 		bottom: 16px;
 		left: 10px;
 		font-size: 1.2rem;
+		z-index: -1;
 	}
 	.frame__title-main {
 		font-size: 1.5rem;
