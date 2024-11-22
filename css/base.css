@@ -131,7 +131,12 @@ a:focus-visible {
 	grid-gap: 2rem;
 	z-index: 1000;
 }
-
+.oh__inner {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	position: fixed;
+}
 .frame a:not(.frame__title-back) {
 	white-space: nowrap;
 	overflow: hidden;
@@ -254,14 +259,7 @@ a:focus-visible {
 		top: 50px;
 		transform: translate(-50%, 0);
 	}
-	.oh__inner {
-		position: fixed;
-		user-select: none;
-		bottom: 16px;
-		left: 10px;
-		font-size: 1.2rem;
-		z-index: -1;
-	}
+
 	.frame__title-main {
 		font-size: 1.5rem;
 	}

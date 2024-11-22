@@ -82,7 +82,17 @@ let renderer, scene, camera, orbit, lightHolder, rayCaster, mouse, copyright;
 initScene();
 createControls();
 window.addEventListener('resize', updateSceneSize);
-
+document.addEventListener('DOMContentLoaded', () => {
+    // Calculate 20% of the total scrollable height
+    const scrollAmount = document.body.scrollHeight * 0.2;
+    setTimeout(() => {
+    // Scroll the page down by 20%
+    window.scrollTo({
+            top: scrollAmount,
+            behavior: 'smooth' // Optional: adds a smooth scrolling effect
+        });
+    }, 500);
+});
 
 // --------------------------------------------------
 // Three.js scene
